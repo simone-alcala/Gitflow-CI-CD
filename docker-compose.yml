@@ -1,0 +1,24 @@
+services:
+  db_ci_cd:
+    image: postgres
+    container_name: db_ci_cd
+    restart: always
+    ports:
+      - 1234:5432
+    env_file:
+      - .env
+    volumes:
+      - pg_ci_cd:/var/lib/postgresql/data
+
+  node_app_ci_cd:
+    container_name: app_ci_cd
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db_ci_cd
+    env_file:
+      - .env
+
+volumes:
+  pg_ci_cd:
