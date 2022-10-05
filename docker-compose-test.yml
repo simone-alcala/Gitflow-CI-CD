@@ -7,8 +7,6 @@ services:
       - 1234:5432
     env_file:
       - .env.test
-    volumes:
-      - pg_ci_cd:/var/lib/postgresql/data
 
   node_app_ci_cd:
     container_name: app_ci_cd
@@ -19,6 +17,3 @@ services:
       - db_ci_cd
     env_file:
       - .env.test
-
-volumes:
-  pg_ci_cd:
